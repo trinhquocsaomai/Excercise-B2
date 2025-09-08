@@ -63,6 +63,8 @@ do
     }
     if (!is_won)
     // Nếu is_won là false (tức là người chơi thua)  -> !is_won là true -> chạy chương trình 
+    // Biến is_won ban đầu phải gán giá trị trước khi sử dụng, nếu không gán thì đến khúc này nó sẽ báo lỗi: Use of unassigned local variable 'is_won'. Vì trong vòng lặp for sẽ có vài trường hợp không có vòng lặp (vì người chơi chọn số lần chơi là 0), thì lúc đó is_won sẽ không được gán giá trị 
+    // chỗ if (!is_won) có thể viết là if (is_won == false )
     {
         Console.WriteLine($"Máy nghĩ ra {comp_num}, ghê không");
     }
