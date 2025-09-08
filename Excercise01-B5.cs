@@ -76,7 +76,27 @@ do
         Console.WriteLine("Hẹn gặp lại");
         break;// dùng để thoát khỏi vòng lặp do - while(true) khi người chơi lựa chọn thoát 
     }
+/*nâng cao hơn yêu cầu của thầy: phải bấm “c” mới được quay lại chơi, “k” để dừng trò chơi, còn bấm chữ khác thì sẽ yêu cầu bấm lại   
 
+            while (true)
+    while (true)
+                Console.WriteLine("Muốn chơi tiếp không, nhập <c/k>");
+            string tl = Console.ReadLine(); // Check xem nhập chữ hoa hay chữ thường nữa nha
+            if (tl == "c")
+            {
+                break;
+            }
+            else if (tl == "k")
+            {
+                Console.WriteLine("Hẹn gặp lại");
+                return;
+            }
+            else
+            {
+                Console.WriteLine("Nhập lại cho đúng cú pháp"); 
+            }
+
+   */ 
 } while (money > 0);
 Console.WriteLine($"Số tiền của bạn là {money}");
 // true là giá trị cố định, luôn luôn đúng -> vì vậy vòng lặp này sẽ chạy mãi mãi. Kĩ thuật while(true) nhằm duy trì tò chơi luôn chạy khi người chơi chủ động chọn thoát ra (là lệnh break ngay ở trên)
