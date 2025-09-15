@@ -15,6 +15,7 @@ class Program
     }
      static void Ex01()
     {
+        //Tạo 1 mảng gồm các phần nhập vào (sau khi tách), tạo ra 1 mảng số mới mà các thành phần đã được ép kiểu
         Console.WriteLine("Nhập vào các số, cách nhau bởi dấu cách");
         string input = Console.ReadLine();
 
@@ -33,7 +34,7 @@ class Program
         int max = MaxValue(numbers);
         Console.WriteLine($"So lon nhat la {max}");
     }
-    static int MaxValue(params int[] numbers)
+    static int MaxValue(params int[] numbers) //Truyền mảng numbers từ Ex01() xuống để sử dụng, nếu không nó sẽ báo lỗi The name 'IntArray' does not exist in the current context
     {
         if (numbers.Length == 0)
             throw new ArgumentException("Phải nhập ít nhất 1 số.");
@@ -43,7 +44,7 @@ class Program
         foreach (int n in numbers)
         {
             if (n > max)
-                max = n;
+                max = n; //Đừng có ngược lại nha má, đang gán biến max đó mang giá trị của n mà 
         }
         return max;
     } 
