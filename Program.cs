@@ -1,0 +1,83 @@
+﻿using System;
+class Program
+{
+    static void Main(string[] args)
+    {
+        //Ex01();
+        Ex02();
+    }
+    /*static void Ex01()
+    {
+        int size = 10;
+        int[] Array = new int[size];
+        for (int i = 0; i < size; i++)
+        {
+            Console.WriteLine($"Nhập phần tử thứ {i}");
+            Array[i] = int.Parse(Console.ReadLine());
+        }
+        Console.WriteLine("Mảng vừa nhập là");
+        for (int i = 0; i < size; i++)
+        {
+            Console.WriteLine($"\t {Array[i]}");
+        }
+        //Thuật toán Bubble Sort 
+        int a = 0;
+        for (int i = 0; i < size - 1; i++)
+        {
+            for (int j = 0; j < size - 1 - i; j++)
+            {
+                if (Array[j] > Array[j + 1])
+                {
+                    //Đổi vị trí 2 biến với nhau
+                    a = Array[j];
+                    Array[j] = Array[j + 1];
+                    Array[j + 1] = a;
+
+                }
+            }
+        }
+        Console.WriteLine("Mảng sau khi sắp xếp là");
+        for (int i = 0; i < size; i++)
+        {
+            Console.Write($"\t {Array[i]}");
+        }
+    }
+    /*
+    1.Tại sao i lại chạy đến size -1
+   
+    Mảng có size phần tử.
+    Sau mỗi vòng lặp ngoài, một phần tử “lớn nhất” đã nổi lên đúng chỗ (ở cuối mảng).
+    Như vậy chỉ cần size - 1 lần là đủ:
+    Sau (size - 1) lần, tất cả các phần tử còn lại tự động đúng chỗ.
+    Nếu chạy đến i < size thì thừa, vì lúc đó mảng đã sắp xếp xong
+    
+    2. Tại sao j lại chạy đến size -1 -i
+    size -1 đã giải thích 
+    j là chỉ số so sánh cặp phần tử liền kề: arr[j] và arr[j+1].
+    Nếu j chạy đến size - 1 thì sẽ bị lỗi, vì arr[j+1] sẽ vượt ngoài mảng.
+    Do đó, phải dừng ở size - 1.
+    Nhưng tại sao còn có - i nữa?
+    Bởi vì sau mỗi vòng ngoài i, đã có i phần tử lớn nhất nằm đúng ở cuối rồi, không cần so sánh lại nữa.
+    Vậy số lần so sánh giảm dần theo từng vòng.
+
+*/
+    static void Ex02()
+    {
+        Console.WriteLine("Nhập vào 1 câu");
+        string input = Console.ReadLine().ToLower();
+        string[] Array = input.Split(' ');
+        Console.WriteLine("Nhập vào 1 từ");
+        string input2 = Console.ReadLine();
+        
+    
+       for (int index = 0; index < Array.Length; index++)
+        {
+            if (input2 == Array[index])
+            {
+                Console.WriteLine($" Từ đó nằm ở {index}"); 
+                return; 
+            }
+        }
+        Console.WriteLine("Không có từ đó trong câu"); 
+    }
+}
