@@ -1,232 +1,250 @@
-﻿// See https://aka.ms/new-console-template for more information
 using System;
-
 class Program
 {
-    static void Main()
+    static void Main(string[] args)
     {
-        Ex01();
-        Ex02(); 
+        //Ex04();
+        //Ex06();
+        //Ex07();
+        Ex08();
+        Ex09();
+        Ex10();
+        
     }
-    static void Ex01()
+    /*static void Ex04()
     {
-        Random rand = new Random();
 
-        // 1. Tạo mảng số nguyên ngẫu nhiên
-        int[] arr = new int[10];
-        for (int i = 0; i < arr.Length; i++)
+        Random range = new Random();
+        int size = 10;
+        int[] Array = new int[size];
+        for (int i = 0; i < size; i++)
         {
-            arr[i] = rand.Next(1, 20); // số từ 1 đến 20
+            Array[i] = range.Next(0, 10);
         }
+        //Tạo ra phần tử muốn bỏ, đếm số phần tử khác phần tử muốn bỏ 
+        Console.WriteLine("Nhập số muốn bỏ");
+        int input = int.Parse(Console.ReadLine());
 
-        Console.WriteLine("Original Array: " + string.Join(", ", arr));
-
-        // 2. Tính trung bình
-        Console.WriteLine("Average: " + CalculateAverage(arr));
-
-        // 3. Kiểm tra mảng có chứa giá trị
-        int testValue = 10;
-        Console.WriteLine($"Contains {testValue}? {ContainsValue(arr, testValue)}");
-
-        // 4. Tìm chỉ số của phần tử
-        Console.WriteLine($"Index of {testValue}: {FindIndex(arr, testValue)}");
-
-        // 5. Xoá phần tử
-        int removeValue = arr[0]; // xoá phần tử đầu tiên
-        Console.WriteLine($"Remove {removeValue}: " + string.Join(", ", RemoveElement(arr, removeValue)));
-
-        // 6. Tìm max và min
-        int max, min;
-        FindMaxMin(arr, out max, out min);
-        Console.WriteLine($"Max: {max}, Min: {min}");
-
-        // 7. Đảo ngược mảng
-        Console.WriteLine("Reversed: " + string.Join(", ", ReverseArray(arr)));
-
-        // 8. Tìm giá trị trùng lặp
-        Console.WriteLine("Duplicates: " + string.Join(", ", FindDuplicates(arr)));
-
-        // 9. Xoá phần tử trùng lặp
-        Console.WriteLine("Without Duplicates: " + string.Join(", ", RemoveDuplicates(arr)));
-    }
-
-    // 1. Tính trung bình
-    static double CalculateAverage(int[] arr)
-    {
-        int sum = 0;
-        for (int i = 0; i < arr.Length; i++)
-            sum += arr[i];
-        return (double)sum / arr.Length;
-    }
-
-    // 2. Kiểm tra có giá trị trong mảng không
-    static bool ContainsValue(int[] arr, int value)
-    {
-        for (int i = 0; i < arr.Length; i++)
-            if (arr[i] == value) return true;
-        return false;
-    }
-
-    // 3. Tìm chỉ số của phần tử
-    static int FindIndex(int[] arr, int value)
-    {
-        for (int i = 0; i < arr.Length; i++)
-            if (arr[i] == value) return i;
-        return -1; // không tìm thấy
-    }
-
-    // 4. Xoá phần tử
-    static int[] RemoveElement(int[] arr, int value)
-    {
         int count = 0;
-        for (int i = 0; i < arr.Length; i++)
-            if (arr[i] == value) count++;
-
-        int[] result = new int[arr.Length - count];
+        foreach (int items in Array)
+        {
+            if (items != input)
+            {
+                count++;
+            }
+        }
+        int[] NewArray = new int[count];
+        //xét mảng cũ, nếu phần tử nào khác số muốn bỏ sẽ được đưa vào trong mảng mới 
         int index = 0;
-        for (int i = 0; i < arr.Length; i++)
-            if (arr[i] != value) result[index++] = arr[i];
-
-        return result;
-    }
-
-    // 5. Tìm max và min
-    static void FindMaxMin(int[] arr, out int max, out int min)
-    {
-        max = arr[0];
-        min = arr[0];
-        for (int i = 1; i < arr.Length; i++)
+        foreach (int items in Array)
         {
-            if (arr[i] > max) max = arr[i];
-            if (arr[i] < min) min = arr[i];
-        }
-    }
-
-    // 6. Đảo ngược mảng
-    static int[] ReverseArray(int[] arr)
-    {
-        int[] reversed = new int[arr.Length];
-        for (int i = 0; i < arr.Length; i++)
-            reversed[i] = arr[arr.Length - 1 - i];
-        return reversed;
-    }
-
-    // 7. Tìm phần tử trùng lặp
-    static int[] FindDuplicates(int[] arr)
-    {
-        int[] duplicates = new int[arr.Length];
-        int dupCount = 0;
-
-        for (int i = 0; i < arr.Length; i++)
-        {
-            for (int j = i + 1; j < arr.Length; j++)
+            if (items != input)
             {
-                if (arr[i] == arr[j] && !Exists(duplicates, dupCount, arr[i]))
-                {
-                    duplicates[dupCount++] = arr[i];
-                }
+                NewArray[index] = items;
+                index++;
             }
+            //Không được để index++; ở đây vì index vẫn luôn tăng cho dù có thoả điều kiện hay không, Kết quả: index sẽ vượt quá số phần tử thực sự có trong NewArray
         }
-
-        int[] result = new int[dupCount];
-        Array.Copy(duplicates, result, dupCount);
-        return result;
+        for (int b = 0; b < count; b++)
+        {
+            Console.Write($"\t {NewArray[b]}");
+        }
     }
-
-    // Hàm phụ kiểm tra tồn tại
-    static bool Exists(int[] arr, int length, int value)
+    static void Ex06()
     {
-        for (int i = 0; i < length; i++)
-            if (arr[i] == value) return true;
-        return false;
+        Random range = new Random();
+        int size = 10;
+        int[] Array = new int[size];
+        for (int i = 0; i < size; i++)
+        {
+            Array[i] = range.Next(0, 10);
+        }
+        for (int n = 0; n < size; n++)
+        {
+            Console.Write($"\t {Array[n]}");
+        }
+        Console.WriteLine();
+        int[] NewArray = new int[size];
+        for (int n = 0; n < size; n++)
+        {
+            NewArray[n] = Array[size - 1 - n];
+        }
+        for (int n = 0; n < size; n++)
+        {
+            Console.Write($"\t {NewArray[n]}");
+        }
     }
-
-    // 8. Xoá phần tử trùng lặp
-    static int[] RemoveDuplicates(int[] arr)
+    //Đảo vị trí 1 mảng 
+    static void Ex07()
     {
-        int[] temp = new int[arr.Length];
+        Random range = new Random();
+        int size = 10;
+        int[] Array = new int[size];
+        for (int i = 0; i < size; i++)
+        {
+            Array[i] = range.Next(0, 10);
+        }
+        Console.WriteLine("Mảng ban đầu là");
+        for (int n = 0; n < size; n++)
+        {
+            Console.Write($"\t {Array[n]}");
+        }
+        Console.WriteLine();
+        int[] Temporary = new int[Array.Length];
+        int index = 0;
         int count = 0;
 
-        for (int i = 0; i < arr.Length; i++)
+        for (int i = 0; i < Array.Length; i++)
         {
-            if (!Exists(temp, count, arr[i]))
+            for (int j = i + 1; j < Array.Length; j++)
             {
-                temp[count++] = arr[i];
-            }
-        }
-
-        int[] result = new int[count];
-        Array.Copy(temp, result, count);
-        return result;
-    }
-    static void Ex02()
-    {
-        // Bubble Sort 
-        int[] numbers = new int[10];
-        Console.WriteLine("Nhập 10 số nguyên:");
-
-        for (int i = 0; i < numbers.Length; i++)
-        {
-            Console.Write($"Số thứ {i + 1}: ");
-            numbers[i] = int.Parse(Console.ReadLine());
-        }
-
-        Console.WriteLine("\nMảng trước khi sắp xếp: " + string.Join(", ", numbers));
-
-        BubbleSort(numbers);
-
-        Console.WriteLine("Mảng sau khi sắp xếp: " + string.Join(", ", numbers));
-
-        // Linear Search 
-        Console.WriteLine("\nNhập một câu:");
-        string sentence = Console.ReadLine();
-
-        Console.WriteLine("Nhập một từ cần tìm:");
-        string word = Console.ReadLine();
-
-        string[] words = sentence.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-
-        int index = LinearSearch(words, word);
-
-        if (index != -1)
-        {
-            Console.WriteLine($"Từ \"{word}\" xuất hiện ở vị trí {index} trong câu.");
-        }
-        else
-        {
-            Console.WriteLine($"Không tìm thấy từ \"{word}\" trong câu.");
-        }
-    }
-
-    // Thuật toán Bubble Sort
-    static void BubbleSort(int[] arr)
-    {
-        int n = arr.Length;
-        for (int i = 0; i < n - 1; i++)
-        {
-            for (int j = 0; j < n - i - 1; j++)
-            {
-                if (arr[j] > arr[j + 1])
+                if (Array[i] == Array[j])
                 {
-                    // hoán đổi
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
+                    Temporary[index] = Array[i];
+                    index++;
+                    count++;
+                    break;
                 }
             }
         }
+
+        int[] Result = new int[count];
+        for (int i = 0; i < count; i++)
+        {
+            Result[i] = Temporary[i];
+        }
+        Console.WriteLine("Các giá trị trùng là");
+        for (int i = 0; i < count; i++)
+        {
+            Console.Write($"\t {Result[i]}");
+        }
+    }*/
+    // Xét mỗi phần tử của mảng, xét xem trước đó nó đã xuất hiện chưa, nếu chưa thì cho vào mảng Temporary, còn rồi thì bỏ qua, cuối cùng tạo mảng result tham khảo từ Temporary. 
+    static void Ex08()
+    {
+        Random range = new Random();
+        int size = 10;
+        int[] Array = new int[size];
+        for (int i = 0; i < size; i++)
+        {
+            Array[i] = range.Next(0, 10);
+        }
+        Console.WriteLine("Mảng ban đầu là");
+        for (int n = 0; n < size; n++)
+        {
+            Console.Write($"\t {Array[n]}");
+        }
+        Console.WriteLine();
+
+
+        int[] Temporary = new int[Array.Length];
+        int index = 0;
+        int count = 0;
+
+        for (int i = 0; i < Array.Length; i++)
+{
+    bool exists = false;
+
+    // kiểm tra Array[i] đã xuất hiện trước đó chưa
+    for (int j = 0; j < i; j++)
+    {
+        if (Array[i] == Array[j])
+        {
+            exists = true;
+            break;
+        }
     }
 
-    // Thuật toán Linear Search
-    static int LinearSearch(string[] arr, string target)
+    if (!exists)
     {
-        for (int i = 0; i < arr.Length; i++)
+        Temporary[count] = Array[i];
+        count++;
+    }
+}
+        int[] Result = new int[count];
+        for (int i = 0; i < count; i++)
         {
-            if (arr[i].Equals(target, StringComparison.OrdinalIgnoreCase))
+            Result[i] = Temporary[i];
+        }
+        Console.WriteLine("Mảng chưa các giá trị không trùng là");
+        for (int i = 0; i < count; i++)
+        {
+            Console.Write($"\t {Result[i]}");
+        }
+    }
+    /*static void Ex09()
+    {
+        int size = 10;
+        int[] Array = new int[size];
+        for (int i = 0; i < size; i++)
+        {
+            Console.WriteLine($"Nhập phần tử thứ {i}");
+            Array[i] = int.Parse(Console.ReadLine());
+        }
+        Console.WriteLine("Mảng vừa nhập là");
+        for (int i = 0; i < size; i++)
+        {
+            Console.WriteLine($"\t {Array[i]}");
+        }
+        //Thuật toán Bubble Sort 
+        int a = 0;
+        for (int i = 0; i < size - 1; i++)
+        {
+            for (int j = 0; j < size - 1 - i; j++)
             {
-                return i; // trả về chỉ số nếu tìm thấy
+                if (Array[j] > Array[j + 1])
+                {
+                    //Đổi vị trí 2 biến với nhau
+                    a = Array[j];
+                    Array[j] = Array[j + 1];
+                    Array[j + 1] = a;
+
+                }
             }
         }
-        return -1; // không tìm thấy
+        Console.WriteLine("Mảng sau khi sắp xếp là");
+        for (int i = 0; i < size; i++)
+        {
+            Console.Write($"\t {Array[i]}");
+        }
     }
+    /*
+    1.Tại sao i lại chạy đến size -1
+   
+    Mảng có size phần tử.
+    Sau mỗi vòng lặp ngoài, một phần tử “lớn nhất” đã nổi lên đúng chỗ (ở cuối mảng).
+    Như vậy chỉ cần size - 1 lần là đủ:
+    Sau (size - 1) lần, tất cả các phần tử còn lại tự động đúng chỗ.
+    Nếu chạy đến i < size thì thừa, vì lúc đó mảng đã sắp xếp xong
+    
+    2. Tại sao j lại chạy đến size -1 -i
+    size -1 đã giải thích 
+    j là chỉ số so sánh cặp phần tử liền kề: arr[j] và arr[j+1].
+    Nếu j chạy đến size - 1 thì sẽ bị lỗi, vì arr[j+1] sẽ vượt ngoài mảng.
+    Do đó, phải dừng ở size - 1.
+    Nhưng tại sao còn có - i nữa?
+    Bởi vì sau mỗi vòng ngoài i, đã có i phần tử lớn nhất nằm đúng ở cuối rồi, không cần so sánh lại nữa.
+    Vậy số lần so sánh giảm dần theo từng vòng.
+
+*/
+    static void Ex10()
+    {
+        Console.WriteLine("Nhập vào 1 câu");
+        string input = Console.ReadLine().ToLower();
+        string[] Array = input.Split(' ');
+        Console.WriteLine("Nhập vào 1 từ");
+        string input2 = Console.ReadLine();
+        
+    
+       for (int index = 0; index < Array.Length; index++)
+        {
+            if (input2 == Array[index])
+            {
+                Console.WriteLine($" Từ đó nằm ở {index}"); 
+                return; 
+            }
+        }
+        Console.WriteLine("Không có từ đó trong câu"); 
+    }
+    
 }
